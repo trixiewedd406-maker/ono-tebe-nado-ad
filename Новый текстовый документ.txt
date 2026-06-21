@@ -1,0 +1,324 @@
+1. Android: кнопка и заголовок
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Заголовок"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Нажми"/>
+
+</LinearLayout>
+MainActivity.java
+package com.example.myapp;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        TextView textView = findViewById(R.id.textView);
+        Button button = findViewById(R.id.button);
+
+        button.setOnClickListener(v -> {
+            textView.setText("Привет!");
+        });
+    }
+}
+2. Android: изменение цвета текста
+
+В XML измените элементы:
+
+<TextView
+    android:id="@+id/textView"
+    android:textColor="#FF0000"
+    ... />
+
+Красный цвет.
+
+<Button
+    android:id="@+id/button"
+    android:textColor="#0000FF"
+    ... />
+
+Синий цвет.
+
+3. Android: изменение фона
+
+Добавьте фон у корневого Layout:
+
+android:background="#CCFFCC"
+
+Добавьте вторую кнопку:
+
+<Button
+    android:id="@+id/button2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Кнопка 2"/>
+4. Android: две кнопки
+XML
+<TextView
+    android:id="@+id/textView"
+    android:text="Текст"
+    ... />
+
+<Button
+    android:id="@+id/buttonA"
+    android:text="Кнопка A"
+    ... />
+
+<Button
+    android:id="@+id/buttonB"
+    android:text="Кнопка B"
+    ... />
+Java
+TextView textView = findViewById(R.id.textView);
+
+Button buttonA = findViewById(R.id.buttonA);
+Button buttonB = findViewById(R.id.buttonB);
+
+buttonA.setOnClickListener(v -> {
+    textView.setText("A");
+});
+
+buttonB.setOnClickListener(v -> {
+    textView.setText("B");
+});
+5. Android: подсчёт нажатий
+XML
+<TextView
+    android:id="@+id/textCounter"
+    android:text="Нажатий: 0"
+    ... />
+
+<Button
+    android:id="@+id/button"
+    android:text="Нажми"
+    ... />
+Java
+int count = 0;
+
+TextView textCounter = findViewById(R.id.textCounter);
+Button button = findViewById(R.id.button);
+
+button.setOnClickListener(v -> {
+    count++;
+    textCounter.setText("Нажатий: " + count);
+});
+6. Android: ввод текста
+XML
+<EditText
+    android:id="@+id/editText"
+    android:hint="Введите текст"
+    ... />
+
+<Button
+    android:id="@+id/buttonOk"
+    android:text="ОК"
+    ... />
+
+<TextView
+    android:id="@+id/textView"
+    android:text="Заголовок"
+    ... />
+Java
+EditText editText = findViewById(R.id.editText);
+Button buttonOk = findViewById(R.id.buttonOk);
+TextView textView = findViewById(R.id.textView);
+
+buttonOk.setOnClickListener(v -> {
+    String text = editText.getText().toString();
+    textView.setText(text);
+});
+7. Android: увеличение размера текста
+Java
+TextView textView = findViewById(R.id.textView);
+Button button = findViewById(R.id.button);
+
+button.setOnClickListener(v -> {
+    float size = textView.getTextSize();
+    textView.setTextSize(size / getResources().getDisplayMetrics().scaledDensity + 2);
+});
+8. Android: переключение цвета фона
+XML
+<LinearLayout
+    android:id="@+id/layout"
+    ...
+>
+Java
+LinearLayout layout = findViewById(R.id.layout);
+Button button = findViewById(R.id.button);
+
+boolean isWhite = true;
+
+button.setOnClickListener(v -> {
+    if(isWhite){
+        layout.setBackgroundColor(Color.LTGRAY);
+    } else {
+        layout.setBackgroundColor(Color.WHITE);
+    }
+    isWhite = !isWhite;
+});
+
+Не забудьте импорт:
+
+import android.graphics.Color;
+9. HTML + JavaScript: кнопка и заголовок
+
+Создайте файл index.html.
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 id="title">Привет</h1>
+
+<button onclick="changeText()">
+Нажми
+</button>
+
+<script>
+function changeText(){
+    document.getElementById("title").innerHTML =
+    "Ты нажал кнопку!";
+}
+</script>
+
+</body>
+</html>
+10. HTML: красный текст
+
+Добавьте кнопку:
+
+<button onclick="redText()">
+Красный текст
+</button>
+
+<script>
+function redText(){
+    document.getElementById("title").style.color =
+    "red";
+}
+</script>
+11. HTML: зелёный фон
+<button onclick="greenBg()">
+Зелёный фон
+</button>
+
+<script>
+function greenBg(){
+    document.body.style.backgroundColor =
+    "lightgreen";
+}
+</script>
+12. HTML: подсчёт нажатий
+<p id="counter">
+Нажатий: 0
+</p>
+
+<button onclick="countClick()">
+Нажми
+</button>
+
+<script>
+let count = 0;
+
+function countClick(){
+    count++;
+    document.getElementById("counter").innerHTML =
+    "Нажатий: " + count;
+}
+</script>
+13. Java: функция суммы
+
+Создайте файл Main.java.
+
+public class Main {
+
+    public static int sum(int a, int b){
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(sum(2, 3));
+    }
+}
+
+Результат:
+
+5
+14. Java: проверка положительного числа
+public class Main {
+
+    public static boolean isPositive(int x){
+        return x > 0;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(isPositive(5));
+        System.out.println(isPositive(-3));
+        System.out.println(isPositive(0));
+
+    }
+}
+
+Результат:
+
+true
+false
+false
+15. Unit-тест JUnit
+Класс SumUtil.java
+public class SumUtil {
+
+    public static int sum(int a, int b){
+        return a + b;
+    }
+}
+Класс SumUtilTest.java
+
+Для JUnit 5:
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class SumUtilTest {
+
+    @Test
+    public void testSum() {
+
+        assertEquals(
+                5,
+                SumUtil.sum(2, 3)
+        );
+
+    }
+}
+Что проверяет тест
+SumUtil.sum(2,3)
+
+возвращает:
+
+5
